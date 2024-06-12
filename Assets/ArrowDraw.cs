@@ -26,9 +26,12 @@ public class ArrowDraw : MonoBehaviour
         {
             clickPosition=Input.mousePosition;
         }
-        if(Input.GetMouseButton(0))
+        else if(Input.GetMouseButton(0))
         {
-            Vector3 dist=clickPosition - Input.mousePosition;
+
+            arrowImage.gameObject.SetActive(true);
+
+            Vector3 dist =clickPosition - Input.mousePosition;
             Debug.Log(dist);
 
             float size=dist.magnitude;
@@ -36,6 +39,10 @@ public class ArrowDraw : MonoBehaviour
             arrowImage.rectTransform.position = clickPosition;
             arrowImage.rectTransform.rotation = Quaternion.Euler(0, 0, angelRad * Mathf.Rad2Deg);
             arrowImage.rectTransform.sizeDelta=new Vector2(size, size);
+        }
+        else if (!Input.GetMouseButton(0))
+        {
+            arrowImage.gameObject.SetActive(false);
         }
     }
 }
